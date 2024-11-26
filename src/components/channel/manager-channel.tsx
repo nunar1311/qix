@@ -11,6 +11,8 @@ import { useCurrentMember } from "@/hooks/member/use-current-member";
 import { useWorkspaceId } from "@/hooks/workspace/use-workspace-id";
 import { Label } from "../ui/label";
 import { Icons } from "../Icons";
+import { useRemoveChannel } from "@/hooks/channel/use-remove-channel";
+import { useToast } from "@/hooks/use-toast";
 
 interface ManagerChannelProps {
     channelId: Id<"channels">;
@@ -22,10 +24,31 @@ const ManagerChannel = ({
     onClose,
 }: ManagerChannelProps) => {
     const workspaceId = useWorkspaceId();
+
+    const { toast } = useToast();
+
     const { channel, isLoading } = useGetChannel({ id: channelId });
     const { member, isLoading: loadCurrentMember } = useCurrentMember(
         { workspaceId },
     );
+
+    const { mutate: removeChannel, isPending: removingChannel } =
+        useRemoveChannel();
+
+    const handleRemove = () => {
+        removeChannel(
+            { id: channelId },
+            {
+                onSuccess: () => {
+                    onClose();
+                    toast({
+                        title: "Kênh đã được xoá",
+                        variant: "default",
+                    });
+                },
+            },
+        );
+    };
 
     if (isLoading || loadCurrentMember) {
         return (
@@ -101,9 +124,9 @@ const ManagerChannel = ({
                 <div className="flex flex-col p-4 gap-4">
                     {member?.role === "admin" ? (
                         <Button
-                            // onClick={handleRemove}
-                            // isLoading={loadChannel}
-                            // disabled={loadChannel}
+                            onClick={handleRemove}
+                            isLoading={removingChannel}
+                            disabled={removingChannel}
                             className="bg-transparent hover:bg-zinc-200 text-red-500 border  justify-start"
                         >
                             <Trash className="size-5" />
