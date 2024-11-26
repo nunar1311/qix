@@ -6,6 +6,7 @@ import Header from "./Header";
 import MessageList from "../channel/message-list";
 import ChatInput from "./ChatInput";
 import { usePanel } from "@/hooks/use-panel";
+import { Icons } from "../Icons";
 
 interface ConversationProps {
     id: Id<"conversations">;
@@ -25,7 +26,11 @@ const Conversation = ({ id }: ConversationProps) => {
     });
 
     if (memberLoading || status === "LoadingFirstPage") {
-        return <div>Loading...</div>;
+        return (
+            <div className="flex items-center justify-center h-screen ">
+                <Icons.load className="size-20 fill-zinc-500" />
+            </div>
+        );
     }
     return (
         <div className="flex flex-col h-full">

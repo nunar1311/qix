@@ -76,12 +76,11 @@ const ChatInput = ({ placeholder }: ChatInputProps) => {
                     throw new Error("Không thể tải lên ảnh");
                 }
 
-                console.log(result);
-
                 const { storageId } = await result.json();
 
                 values.image = storageId;
             }
+
             await createMessage(values, { throwError: true });
 
             setEditorKey((prev) => prev + 1);

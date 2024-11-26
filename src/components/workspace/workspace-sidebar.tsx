@@ -42,7 +42,7 @@ const WorkspaceSidebar = () => {
         useGetWorkspace({ id: workspaceId });
 
     if (memberLoading || workspaceLoading) {
-        return <div className="">Loading...</div>;
+        return null;
     }
 
     if (!workspace || !member) {

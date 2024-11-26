@@ -10,6 +10,7 @@ import { Input } from "../ui/input";
 import { useCurrentMember } from "@/hooks/member/use-current-member";
 import { useWorkspaceId } from "@/hooks/workspace/use-workspace-id";
 import { Label } from "../ui/label";
+import { Icons } from "../Icons";
 
 interface ManagerChannelProps {
     channelId: Id<"channels">;
@@ -27,7 +28,11 @@ const ManagerChannel = ({
     );
 
     if (isLoading || loadCurrentMember) {
-        return <div>Loading...</div>;
+        return (
+            <div className="flex items-center justify-center h-screen ">
+                <Icons.load className="size-20 fill-zinc-500" />
+            </div>
+        );
     }
 
     return (

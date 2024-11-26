@@ -264,7 +264,6 @@ export const get = query({
                                         memberIds: [
                                             reaction.memberId,
                                         ],
-
                                     });
                                 }
 
@@ -284,6 +283,11 @@ export const get = query({
 
                         return {
                             ...message,
+                            image: message.image
+                                ? await ctx.storage.getUrl(
+                                      message.image,
+                                  )
+                                : undefined,
                             member,
                             user,
                             reactions:
