@@ -1,3 +1,5 @@
+import { GetMessageReturnType } from "@/hooks/messages/use-get-messages";
+import Message from "./message";
 import {
     differenceInMinutes,
     format,
@@ -5,9 +7,6 @@ import {
     isYesterday,
 } from "date-fns";
 import { vi } from "date-fns/locale/vi";
-
-import { GetMessageReturnType } from "@/hooks/messages/use-get-messages";
-import Message from "./message";
 import ChannelHero from "./channel-hero";
 import { useState } from "react";
 import { Id } from "../../../convex/_generated/dataModel";
@@ -87,7 +86,7 @@ const MessageList = ({
                                 {formatDateLabel(dateKey)}
                             </span>
                         </div>
-                        {messages.map((message, index) => {
+                        {messages?.map((message, index) => {
                             const prevMessage = messages[index - 1];
                             const isCompact =
                                 prevMessage &&
@@ -99,20 +98,22 @@ const MessageList = ({
                                         prevMessage._creationTime,
                                     ),
                                 ) < TIME_THRESHOLD;
+
+                            if (!message) return null;
                             return (
                                 <Message
-                                    key={message?._id}
-                                    id={message?._id}
-                                    memberId={message?.memberId}
-                                    authorName={
-                                        message?.user.username
-                                    }
-                                    authorAvatar={message?.user.image}
+                                    key={message._id}
+                                    id={message._id}
+                                    memberId={message.memberId}
+                                    authorName={message.user.username}
+                                    authorAvatar={message.user.image}
                                     isAuthor={
-                                        message?.memberId ===
+                                        message.memberId ===
                                         currentMember?._id
                                     }
-                                    reactions={message?.reactions}
+                                    reactions={
+                                        message?.reactions ?? []
+                                    }
                                     body={message?.content ?? ""}
                                     image={message?.image}
                                     updatedAt={message?.updatedAt}

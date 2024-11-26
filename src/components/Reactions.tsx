@@ -6,10 +6,9 @@ import Hint from "./Hint";
 import EmojiPicker from "./emoji-picker";
 import { Button } from "./ui/button";
 import { Smile } from "lucide-react";
-import { useGetMember } from "@/hooks/member/use-get-member";
 
 interface ReactionsProps {
-    data?: Array<
+    data: Array<
         Omit<Doc<"reactions">, "memberId"> & {
             count: number;
             memberIds: Id<"members">[];
@@ -27,9 +26,6 @@ const Reactions = ({ data, onChange }: ReactionsProps) => {
     return (
         <div className="flex items-center gap-1 my-1">
             {data?.map((reaction) => {
-                // const { member: userMember } = useGetMember({
-                //     id: reaction.memberIds?.[0],
-                // });
                 return (
                     <Hint
                         key={reaction._id}

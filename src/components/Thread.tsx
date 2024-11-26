@@ -224,11 +224,13 @@ const Thread = ({ messageId, onClose }: ThreadProps) => {
                                             prevMessage._creationTime,
                                         ),
                                     ) < TIME_THRESHOLD;
+
+                                if (!message) return null;
                                 return (
                                     <Message
-                                        key={message?._id}
+                                        key={message._id}
                                         hideThreadButton
-                                        memberId={message?.memberId}
+                                        memberId={message.memberId}
                                         authorAvatar={
                                             message?.user.image
                                         }
@@ -297,6 +299,7 @@ const Thread = ({ messageId, onClose }: ThreadProps) => {
                     </div>
                 )}
                 <Message
+                    image={message.image}
                     hideThreadButton
                     memberId={message?.memberId}
                     authorAvatar={message?.user.image}

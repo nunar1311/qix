@@ -32,13 +32,10 @@ interface MessageProps {
     authorAvatar?: string;
     isAuthor: boolean;
     reactions: Array<
-        Omit<
-            Doc<"reactions">,
-            "memberId" & {
-                count: number;
-                memberIds: Id<"members">[];
-            }
-        >
+        Omit<Doc<"reactions">, "memberId"> & {
+            count: number;
+            memberIds: Id<"members">[];
+        }
     >;
     body: Doc<"messages">["content"];
     image: string | null | undefined;
