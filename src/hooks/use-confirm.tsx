@@ -39,7 +39,7 @@ const useConfirm = (
     const confirmDialog = () => {
         return (
             <Dialog open={promise !== null}>
-                <DialogContent className="w-[200px]">
+                <DialogContent className="w-[400px]">
                     <DialogHeader>
                         <DialogTitle>{title}</DialogTitle>
                         <DialogDescription>

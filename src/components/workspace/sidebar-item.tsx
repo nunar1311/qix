@@ -12,7 +12,7 @@ const sidebarItemVariants = cva(
     {
         variants: {
             variant: {
-                default: "text-zinc-900 hover:bg-zinc-200",
+                default: "text-zinc-900 hover:bg-zinc-200/50",
                 active: "text-zinc-900 bg-zinc-200 hover:bg-zinc-200",
             },
         },
@@ -24,21 +24,21 @@ const sidebarItemVariants = cva(
 
 interface SidebarItemProps {
     label: string;
-    id?: string;
     icon: ReactNode;
+    href?: string;
     variant?: VariantProps<typeof sidebarItemVariants>["variant"];
 }
 
 const SidebarItem = ({
     label,
-    id,
+    href,
     icon,
     variant,
 }: SidebarItemProps) => {
     const workspaceId = useWorkspaceId();
     return (
         <Link
-            href={`/workspace/${workspaceId}/${id}`}
+            href={`/workspace/${workspaceId}/${href}`}
             className={cn(sidebarItemVariants({ variant }))}
         >
             {icon}

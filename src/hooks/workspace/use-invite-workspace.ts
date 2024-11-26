@@ -3,7 +3,10 @@ import { api } from "../../../convex/_generated/api";
 import { useCallback, useMemo, useState } from "react";
 import { Id } from "../../../convex/_generated/dataModel";
 
-type RequestType = { workspaceId: Id<"workspaces">, joinCode: string };
+type RequestType = {
+    workspaceId: Id<"workspaces">;
+    joinCode: string;
+};
 type ResponseType = Id<"workspaces"> | null;
 
 type Options = {
@@ -36,6 +39,7 @@ export const useInviteWorkspace = () => {
 
                 const res = await mutation(values);
                 options?.onSuccess?.(res);
+                return res;
             } catch (error) {
                 setStatus("error");
                 options?.onError?.(error as Error);

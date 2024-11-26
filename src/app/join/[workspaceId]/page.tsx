@@ -1,5 +1,6 @@
 "use client";
 
+import { Icons } from "@/components/Icons";
 import { buttonVariants } from "@/components/ui/button";
 import {
     InputOTP,
@@ -60,7 +61,11 @@ const JoinPage = () => {
     };
 
     if (isLoading) {
-        return <div>Loading...</div>;
+        return (
+            <div className="flex items-center justify-center h-screen ">
+                <Icons.load className="size-20 fill-zinc-500" />
+            </div>
+        );
     }
 
     return (

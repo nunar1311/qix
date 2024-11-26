@@ -13,8 +13,11 @@ import UserAvatar from "../UserAvatar";
 import { useCurrentUser } from "@/hooks/user/use-current-user";
 import DropdownChannel from "../channel/dropdown-channel";
 import { useChannelId } from "@/hooks/channel/use-channel-id";
+import { useMemberId } from "@/hooks/member/use-member-id";
+import { redirect } from "next/navigation";
 
 const WorkspaceSidebar = () => {
+    const memberId = useMemberId();
     const workspaceId = useWorkspaceId();
     const channelId = useChannelId();
     const { member, isLoading: memberLoading } = useCurrentMember({
@@ -43,7 +46,7 @@ const WorkspaceSidebar = () => {
     }
 
     if (!workspace || !member) {
-        return <div className="z-50">Not found</div>;
+        return redirect("/");
     }
     return (
         <div className="flex flex-col h-full">
@@ -55,7 +58,7 @@ const WorkspaceSidebar = () => {
                 <SidebarItem
                     label="Bản nháp và đã gửi"
                     icon={<SendHorizonal className="size-5" />}
-                    id="drafts&sent"
+                    // id="drafts&sent"
                 />
 
                 <WorkspaceSidebarSection
@@ -73,7 +76,7 @@ const WorkspaceSidebar = () => {
                                 <Hash className="size-5 shrink-0" />
                             }
                             label={channel.name}
-                            id={channel._id}
+                            href={`${channel._id}`}
                             variant={
                                 channelId === channel._id
                                     ? "active"
@@ -101,7 +104,12 @@ const WorkspaceSidebar = () => {
                                 />
                             }
                             label={_member.user.username || ""}
-                            id={_member._id}
+                            href={`member/${_member._id}`}
+                            variant={
+                                _member._id === memberId
+                                    ? "active"
+                                    : "default"
+                            }
                         />
                     ))}
                 </WorkspaceSidebarSection>

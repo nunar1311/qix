@@ -59,23 +59,23 @@ const WorkspaceHeader = ({
                         align="start"
                         className="w-64 rounded-2xl"
                     >
+                        <DropdownMenuItem className="rounded-xl px-2 items-center cursor-pointer capitalize font-semibold">
+                            <div className="shrink-0 flex items-center justify-center overflow-hidden size-10 rounded-xl bg-zinc-200 font-semibold text-lg">
+                                {workspace.name
+                                    .charAt(0)
+                                    .toUpperCase()}
+                            </div>
+                            <div className="flex flex-col items-start justify-start">
+                                <p className="truncate w-52">
+                                    {workspace?.name}
+                                </p>
+                                <span className="text-xs font-normal text-zinc-600">
+                                    Workspace đang hoạt động
+                                </span>
+                            </div>
+                        </DropdownMenuItem>
                         {isAdmin ? (
                             <>
-                                <DropdownMenuItem className="rounded-xl px-2 items-center cursor-pointer capitalize font-semibold">
-                                    <div className="shrink-0 flex items-center justify-center overflow-hidden size-10 rounded-xl bg-zinc-200 font-semibold text-lg">
-                                        {workspace.name
-                                            .charAt(0)
-                                            .toUpperCase()}
-                                    </div>
-                                    <div className="flex flex-col items-start justify-start">
-                                        <p className="truncate w-52">
-                                            {workspace?.name}
-                                        </p>
-                                        <span className="text-xs font-normal text-zinc-600">
-                                            Workspace đang hoạt động
-                                        </span>
-                                    </div>
-                                </DropdownMenuItem>
                                 <DropdownMenuItem
                                     onClick={() =>
                                         setInviteOpen(true)

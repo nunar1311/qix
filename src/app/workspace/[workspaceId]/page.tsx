@@ -1,5 +1,6 @@
 "use client";
 
+import { Icons } from "@/components/Icons";
 import { useGetChannels } from "@/hooks/channel/use-get-channels";
 import { useCurrentMember } from "@/hooks/member/use-current-member";
 import { useGetWorkspace } from "@/hooks/workspace/use-get-workspace";
@@ -61,7 +62,11 @@ const WorkspaceIdPage = () => {
     ]);
 
     if (isLoadWorkspace || isLoadChannels || isLoadMember) {
-        return <div>Loading...</div>;
+        return (
+            <div className="flex items-center justify-center h-screen">
+                <Icons.load className="size-20" />
+            </div>
+        );
     }
 
     if (!workspace || !member) {

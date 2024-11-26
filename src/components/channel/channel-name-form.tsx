@@ -24,7 +24,7 @@ const formSchema = z.object({
 });
 
 interface UserNameFormProps {
-    value: string;
+    value?: string;
 }
 
 const ChannelNameForm = ({ value }: UserNameFormProps) => {

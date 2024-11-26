@@ -10,13 +10,17 @@ import {
     MessagesSquare,
     MoreHorizontal,
 } from "lucide-react";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
+import { useWorkspaceId } from "@/hooks/workspace/use-workspace-id";
 
 const Sidebar = () => {
     const pathname = usePathname();
+    const router = useRouter();
 
     const { user } = useCurrentUser();
     if (user === null) return null;
+
+    const workspaceId = useWorkspaceId();
 
     return (
         <aside className="w-[70px] h-full bg-zinc-300 flex flex-col items-center justify-between gap-x-4 pt-2 pb-4">
@@ -26,12 +30,32 @@ const Sidebar = () => {
                     icon={Home}
                     label="Trang chủ"
                     isActive={pathname.includes("/workspace")}
+                    onClick={() =>
+                        router.push(`/workspace/${workspaceId}`)
+                    }
                 />
                 <SidebarButton
                     icon={MessagesSquare}
                     label="Tin nhắn"
+                    isActive={pathname.includes(
+                        `/workspace/${workspaceId}/dms`,
+                    )}
+                    onClick={() =>
+                        router.push(`/workspace/${workspaceId}/dms`)
+                    }
                 />
-                <SidebarButton icon={Bell} label="Hoạt động" />
+                <SidebarButton
+                    icon={Bell}
+                    label="Hoạt động"
+                    isActive={pathname.includes(
+                        `/workspace/${workspaceId}/activity`,
+                    )}
+                    onClick={() =>
+                        router.push(
+                            `/workspace/${workspaceId}/activity`,
+                        )
+                    }
+                />
                 <SidebarButton
                     icon={MoreHorizontal}
                     label="Xem thêm"

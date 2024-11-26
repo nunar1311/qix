@@ -6,11 +6,13 @@ interface SidebarButtonProps {
     icon: LucideIcon;
     label: string;
     isActive?: boolean;
+    onClick?: () => void;
 }
 const SidebarButton = ({
     icon: Icon,
     label,
     isActive,
+    onClick,
 }: SidebarButtonProps) => {
     return (
         <div className="flex flex-col items-center justify-center gap-y-0.5 cursor-pointer group">
@@ -19,11 +21,11 @@ const SidebarButton = ({
                     "size-10 group-hover:bg-zinc-400/50 bg-transparent shadow-none rounded-xl p-2",
                     isActive && "bg-zinc-400/50",
                 )}
+                onClick={onClick}
             >
                 <Icon
                     className={cn(
                         "size-5 text-zinc-900 group-hover:scale-110 transition-all",
-                        isActive && "fill-current",
                     )}
                 />
             </Button>

@@ -1,5 +1,6 @@
 "use client";
 
+import { Icons } from "@/components/Icons";
 import { useCurrentUser } from "@/hooks/user/use-current-user";
 import { useGetWorkspaces } from "@/hooks/workspace/use-get-workspaces";
 import { useCreateWorkspaceModal } from "@/store/use-create-workspace-modal";
@@ -14,8 +15,6 @@ export default function Home() {
     const { workspaces, isLoading } = useGetWorkspaces();
     const { user } = useCurrentUser();
     const router = useRouter();
-
-    console.log(user?.username);
 
     const workspaceId = useMemo(
         () => workspaces?.[0]?._id,
@@ -43,5 +42,9 @@ export default function Home() {
         user,
     ]);
 
-    return <div>Home</div>;
+    return (
+        <div className="flex items-center justify-center h-screen ">
+            <Icons.load className="size-20 fill-zinc-500" />
+        </div>
+    );
 }
