@@ -1,6 +1,5 @@
 {
     "explorer.compactFolders": false,
-    "accessibility.signalOptions.volume": 0,
     "accessibility.signals.chatRequestSent": {
         "sound": "off"
     }
