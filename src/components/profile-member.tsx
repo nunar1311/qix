@@ -19,6 +19,7 @@ import {
     DropdownMenuRadioItem,
     DropdownMenuTrigger,
 } from "./ui/dropdown-menu";
+import { Icons } from "./Icons";
 
 interface ProfileMemberProps {
     memberId: Id<"members">;
@@ -139,8 +140,8 @@ const ProfileMember = ({ memberId, onClose }: ProfileMemberProps) => {
 
     if (loadingMember || loadingCurrentMember) {
         return (
-            <div className="flex flex-col gap-y-2 items-center justify-center h-full">
-                <p>Đang tải...</p>
+            <div className="flex items-center justify-center h-screen ">
+                <Icons.load className="size-20 fill-zinc-500" />
             </div>
         );
     }

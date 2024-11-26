@@ -6,6 +6,7 @@ const nextConfig: NextConfig = {
         domains: [
             "lh3.googleusercontent.com",
             "avatars.githubusercontent.com",
+            "youthful-corgi-29.convex.cloud",
         ],
     },
 };

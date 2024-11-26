@@ -21,6 +21,7 @@ import Message from "./channel/message";
 import { useCreateMessage } from "@/hooks/messages/use-create-message";
 import { useGenerateUploadUrl } from "@/hooks/upload/use-generate-upload-url";
 import { useToast } from "@/hooks/use-toast";
+import { Icons } from "./Icons";
 
 interface ThreadProps {
     messageId: Id<"messages">;
@@ -160,8 +161,8 @@ const Thread = ({ messageId, onClose }: ThreadProps) => {
             //             <X className="size-5" />
             //         </Button>
             //     </div>
-            <div className="flex flex-col gap-y-2 items-center justify-center h-full">
-                <p>Đang tải...</p>
+            <div className="flex items-center justify-center h-screen ">
+                <Icons.load className="size-20 fill-zinc-500" />
             </div>
             // </div>
         );
