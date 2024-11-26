@@ -7,6 +7,7 @@ import { Toaster } from "@/components/ui/toaster";
 import JotaiProvider from "@/components/providers/jotai-provider";
 import { Noto_Sans } from "next/font/google";
 import { NuqsAdapter } from "nuqs/adapters/next";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 export const metadata: Metadata = {
     title: "Create Next App",
@@ -33,6 +34,7 @@ export default function RootLayout({
                                 <Toaster />
                                 <Modal />
                                 {children}
+                                <SpeedInsights />
                             </JotaiProvider>
                         </NuqsAdapter>
                     </ConvexClientProvider>
