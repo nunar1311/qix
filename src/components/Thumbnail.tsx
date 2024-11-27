@@ -16,7 +16,7 @@ const Thumbnail = ({ url }: ThumbnailProps) => {
     return (
         <Dialog>
             <DialogTrigger>
-                <DialogTitle className="relative overflow-hidden max-w-[360px] border rounded-md my-1 cursor-zoom-in">
+                <DialogTitle className="relative overflow-hidden max-w-[60px] border rounded-md my-1 cursor-zoom-in">
                     <img
                         src={url}
                         className="rounded-md size-full object-cover"
