@@ -8,10 +8,15 @@ import { useChannelId } from "@/hooks/channel/use-channel-id";
 import { useGetChannel } from "@/hooks/channel/use-get-channel";
 import { useGetMessages } from "@/hooks/messages/use-get-messages";
 import { usePanel } from "@/hooks/use-panel";
+import { useWorkspaceId } from "@/hooks/workspace/use-workspace-id";
+import { redirect, useRouter } from "next/navigation";
 
 const ChannelIdPage = () => {
     const channelId = useChannelId();
+    const workspaceId = useWorkspaceId();
     const { onOpenManagerChannel } = usePanel();
+
+    const router = useRouter();
 
     const { results, status, loadMore } = useGetMessages({
         channelId,
@@ -29,7 +34,7 @@ const ChannelIdPage = () => {
     }
 
     if (!channel) {
-        return <div className="flex flex-col h-full">Not found</div>;
+        return redirect(`/workspace/${workspaceId}`);
     }
 
     return (

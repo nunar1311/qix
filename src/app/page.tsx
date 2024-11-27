@@ -10,7 +10,6 @@ import { useEffect, useMemo } from "react";
 
 export default function Home() {
     const [open, setOpen] = useCreateWorkspaceModal();
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const [_open, _setOpen] = useUpdateUserModal();
     const { workspaces, isLoading } = useGetWorkspaces();
     const { user } = useCurrentUser();
@@ -23,7 +22,8 @@ export default function Home() {
 
     useEffect(() => {
         if (isLoading) return;
-        if (!user?.username) {
+
+        if (!user?.username && !_open) {
             _setOpen(true);
         }
 
@@ -38,6 +38,7 @@ export default function Home() {
         open,
         setOpen,
         router,
+        _open,
         _setOpen,
         user,
     ]);

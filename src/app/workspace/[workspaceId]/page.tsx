@@ -1,6 +1,5 @@
 "use client";
 
-import { Icons } from "@/components/Icons";
 import { useGetChannels } from "@/hooks/channel/use-get-channels";
 import { useCurrentMember } from "@/hooks/member/use-current-member";
 import { useGetWorkspace } from "@/hooks/workspace/use-get-workspace";
@@ -8,6 +7,7 @@ import { useWorkspaceId } from "@/hooks/workspace/use-workspace-id";
 import { useCreateChannelModal } from "@/store/use-create-channel-modal";
 import { redirect, useRouter } from "next/navigation";
 import { useEffect, useMemo } from "react";
+import { Icons } from "@/components/Icons";
 
 const WorkspaceIdPage = () => {
     const router = useRouter();
@@ -44,7 +44,7 @@ const WorkspaceIdPage = () => {
 
         if (channelId) {
             router.push(`/workspace/${workspaceId}/${channelId}`);
-        } else if (!open && isAdmin) {
+        } else if (!open) {
             setOpen(true);
         }
     }, [
@@ -73,7 +73,11 @@ const WorkspaceIdPage = () => {
         return redirect("/");
     }
 
-    return <div>Không thấy kênh nào tìm thấy</div>;
+    return (
+        <div className="flex items-center justify-center h-screen ">
+            <Icons.load className="size-20 fill-zinc-500" />
+        </div>
+    );
 };
 
 export default WorkspaceIdPage;

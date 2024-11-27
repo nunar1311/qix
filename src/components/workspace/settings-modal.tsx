@@ -68,7 +68,6 @@ const SettingsModal = ({
                         title: "Xoá Workspace thành công",
                         variant: "default",
                     });
-                    router.replace("/");
                 },
                 onError(error) {
                     toast({
