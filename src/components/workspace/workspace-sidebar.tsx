@@ -55,11 +55,11 @@ const WorkspaceSidebar = () => {
                 isAdmin={member.role === "admin"}
             />
             <div className="flex flex-col px-2 mt-3 ">
-                <SidebarItem
+{/*                 <SidebarItem
                     label="Bản nháp và đã gửi"
                     icon={<SendHorizonal className="size-5" />}
                     // id="drafts&sent"
-                />
+                /> */}
 
                 <WorkspaceSidebarSection
                     label="Kênh"
